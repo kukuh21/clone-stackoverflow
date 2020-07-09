@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+    <title>List Pertanyaan</title>
+@endsection
 @section('content')
 <div class="content-wrapper">
     <div class="content-header">

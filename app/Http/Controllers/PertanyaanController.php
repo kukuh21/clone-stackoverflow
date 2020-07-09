@@ -16,11 +16,11 @@ class PertanyaanController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except('index', 'show');
     }
     public function index()
     {
-        $list = Pertanyaan::all();
+        $list = Pertanyaan::orderBy('created_at', 'desc')->get();
         return view('pertanyaan.index', compact('list', 'user'));
     }
 
@@ -58,7 +58,10 @@ class PertanyaanController extends Controller
      */
     public function show($id)
     {
-        //
+        $list = Pertanyaan::all();
+        $pertanyaan = $list->find($id);
+
+        return view('pertanyaan.show', compact('pertanyaan'));
     }
 
     /**
@@ -69,7 +72,9 @@ class PertanyaanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $list = Pertanyaan::all();
+        $pertanyaan = $list->find($id);
+        return view('pertanyaan.edit', compact('pertanyaan'));
     }
 
     /**
@@ -81,7 +86,13 @@ class PertanyaanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pertanyaan = Pertanyaan::find($id);
+
+        $pertanyaan->judul = $request['judul'];
+        $pertanyaan->isi = $request['isi'];
+
+        $pertanyaan->save();
+        return redirect('pertanyaan');
     }
 
     /**
@@ -92,6 +103,8 @@ class PertanyaanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pertanyaan = Pertanyaan::find($id);
+        $pertanyaan->delete();
+        return redirect('pertanyaan');
     }
 }
