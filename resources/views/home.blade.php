@@ -42,12 +42,3 @@
     </div>
 @endsection
 
-@section('js')
-  <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
-  <script src="{{ asset('plugins/datatables/dataTables.bootstrap4.js') }}"></script>
-  <script>
-    $(function () {
-      $("#example1").DataTable();
-    });
-  </script>
-@endsection
