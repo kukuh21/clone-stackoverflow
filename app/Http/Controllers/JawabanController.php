@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pertanyaan;
+use App\User;
+use App\Jawaban;
+use Illuminate\Support\Facades\Auth;
+
 
 class JawabanController extends Controller
 {
@@ -11,6 +16,12 @@ class JawabanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -21,9 +32,13 @@ class JawabanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+        $pertanyaan = Pertanyaan::where('id',$id)->get();
+
+        //dd($pertanyaan);
+        return view('jawaban.create',compact('pertanyaan'));
     }
 
     /**
@@ -35,6 +50,16 @@ class JawabanController extends Controller
     public function store(Request $request)
     {
         //
+
+
+        $Jawaban = new Jawaban;
+        $Jawaban->judul = $request->judul;
+        $Jawaban->isi = $request->isi;
+        $Jawaban->pertanyaan_id = $request->pertanyaan_id;
+        $Jawaban->user_id = Auth::id();
+        $Jawaban->save();
+        return redirect('pertanyaan');
+
     }
 
     /**

@@ -31,7 +31,7 @@
                         <h5 class="card-title mb-2">{{$pertanyaan->judul}}</h5>                                                                        
                         <p class="card-subtitle text-muted">Dibuat Oleh : {{$pertanyaan->user->name}}</p>                             
                         <p class="card-text">{{$pertanyaan->isi}}</p>
-                        <a href="#" class="card-link">Bantu Jawab</a>
+                        <a href="/jawaban/create/{{$pertanyaan->id}}" class="card-link">Bantu Jawab</a>
                         <a href="/pertanyaan/{{$pertanyaan->id}}" class="card-link">Details Pertanyaan</a>
                     </div>
                 </div>

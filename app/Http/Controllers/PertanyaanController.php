@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pertanyaan;
 use App\User;
+use App\Jawaban;
 use Illuminate\Support\Facades\Auth;
 
 class PertanyaanController extends Controller
@@ -21,7 +22,7 @@ class PertanyaanController extends Controller
     public function index()
     {
         $list = Pertanyaan::orderBy('created_at', 'desc')->get();
-        return view('pertanyaan.index', compact('list', 'user'));
+        return view('pertanyaan.index', compact('list'));
     }
 
     /**
@@ -104,6 +105,7 @@ class PertanyaanController extends Controller
     public function destroy($id)
     {
         $pertanyaan = Pertanyaan::find($id);
+        $jawaban = Jawaban::where('pertanyaan_id',$id)->delete();
         $pertanyaan->delete();
         return redirect('pertanyaan');
     }
