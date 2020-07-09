@@ -29,7 +29,7 @@
                         <p class="card-subtitle text-muted">Dibuat Oleh : {{$pertanyaan->user->name}}</p>                             
                         <p class="card-text">{{$pertanyaan->isi}}</p>
                         <a href="#" class="card-link">Bantu Jawab</a>
-                        <a href="#" class="card-link">Lihat Jawaban</a>
+                        <a href="#" class="card-link">Details Pertanyaan</a>
                     </div>
                 </div>
             </div>
