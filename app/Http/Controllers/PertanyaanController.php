@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pertanyaan;
 
 class PertanyaanController extends Controller
 {
@@ -13,7 +14,8 @@ class PertanyaanController extends Controller
      */
     public function index()
     {
-        //
+        $list = Pertanyaan::all();
+        return view('pertanyaan.index');
     }
 
     /**
@@ -23,7 +25,7 @@ class PertanyaanController extends Controller
      */
     public function create()
     {
-        //
+        return view('pertanyaan.create');
     }
 
     /**
