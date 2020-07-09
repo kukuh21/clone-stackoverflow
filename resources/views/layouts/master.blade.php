@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,17 +49,30 @@
 
             <ul class="navbar-nav ml-auto">
                 @auth
-                <li class="nav-item d-none d-sm-inline-block">
-                    {{ Auth::user()->name }}
+                <li class="nav-item d-sm-inline-block dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
                 </li>
                 @endauth
                 @guest
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="/login" class="nav-link">Login</a>
-                </li>                
+                </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="/register" class="nav-link">Register</a>
-                </li>                                    
+                </li>
                 @endguest
             </ul>
         </nav>
