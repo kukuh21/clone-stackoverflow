@@ -22,14 +22,14 @@
     <section class="content" id="dw">
         <div class="container-fluid">
             @foreach ($list as $pertanyaan)
-            <div class="row">
-                <div class="card" style="width: 70rem;">
+            <div class="row-sm">
+                <div class="card">
                     <div class="card-body">                        
                         <h5 class="card-title mb-2">{{$pertanyaan->judul}}</h5>                                                                        
                         <p class="card-subtitle text-muted">Dibuat Oleh : {{$pertanyaan->user->name}}</p>                             
                         <p class="card-text">{{$pertanyaan->isi}}</p>
                         <a href="#" class="card-link">Bantu Jawab</a>
-                        <a href="#" class="card-link">Details Pertanyaan</a>
+                        <a href="/pertanyaan/{{$pertanyaan->id}}" class="card-link">Details Pertanyaan</a>
                     </div>
                 </div>
             </div>
