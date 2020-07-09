@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pertanyaan;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class PertanyaanController extends Controller
 {
@@ -15,7 +17,7 @@ class PertanyaanController extends Controller
     public function index()
     {
         $list = Pertanyaan::all();
-        return view('pertanyaan.index');
+        return view('pertanyaan.index', compact('list', 'user'));
     }
 
     /**
@@ -36,7 +38,12 @@ class PertanyaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pertanyaan = new Pertanyaan;
+        $pertanyaan->judul = $request->judul;
+        $pertanyaan->isi = $request->isi;
+        $pertanyaan->user_id = Auth::id();
+        $pertanyaan->save();
+        return redirect('pertanyaan');
     }
 
     /**
