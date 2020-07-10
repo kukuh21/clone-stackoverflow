@@ -21,7 +21,7 @@ class PertanyaanController extends Controller
     public function index()
     {
         $list = Pertanyaan::orderBy('created_at', 'desc')->get();
-        return view('pertanyaan.index', compact('list', 'user'));
+        return view('pertanyaan.index', compact('list'));
     }
 
     /**

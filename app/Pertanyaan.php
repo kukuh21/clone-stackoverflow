@@ -12,4 +12,8 @@ class Pertanyaan extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function jawaban()
+    {
+        return $this->hasMany('App\Jawaban');
+    }
 }
