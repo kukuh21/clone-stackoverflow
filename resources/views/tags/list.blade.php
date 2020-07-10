@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    <title>List Pertanyaan</title>
+    <title>Tag : {{$tag->tag_name}} </title>
 @endsection
 @section('content')
 <div class="content-wrapper">
@@ -13,8 +13,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                        <li class="breadcrumb-item active">List Pertanyaan</li>
-                        <li class="breadcrumb-item"><a href="/pertanyaan/create">Buat Pertanyaan</a></li>
+                        <li class="breadcrumb-item"><a href="/pertanyaan">List Pertanyaan</a></li>
+                        <li class="breadcrumb-item active">Tags</a></li>
                     </ol>
                 </div>
             </div>

@@ -120,6 +120,7 @@ class PertanyaanController extends Controller
     public function destroy($id)
     {
         $pertanyaan = Pertanyaan::find($id);
+        $pertanyaan->tags()->detach();
         $jawaban = Jawaban::where('pertanyaan_id', $id)->delete();
         $pertanyaan->delete();
         return redirect('pertanyaan');
