@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">List Pertanyaan</h1>
+                    <h1 class="m-0 text-dark">Tag : {{$tag->tag_name}} </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -32,7 +32,7 @@
                         <p class="card-subtitle text-muted">Dibuat Oleh : {{$pertanyaan->user->name}}</p>                             
                         <p class="card-text">{{$pertanyaan->isi}}</p>
                         @foreach ($pertanyaan->tags as $tag)
-                        <a href="tag/{{$tag->id}}" class="btn btn-success btn-sm">{{$tag->tag_name}}</a>
+                        <a href="/tag/{{$tag->id}}" class="btn btn-success btn-sm">{{$tag->tag_name}}</a>
                         @endforeach
                         <br>
                         <div class="mt-2">

@@ -21,3 +21,5 @@ Route::resource('pertanyaan', 'PertanyaanController');
 Route::get('jawaban/create/{pertanyaan_id}', 'JawabanController@create');// menuju form pengisian jawaban
 Route::post('jawaban', 'JawabanController@store');// menyimpan jawaban, redirect ke list pertanyaan
 
+Route::get('tag/{tag_id}', 'TagController@show');
+Route::get('tag', 'TagController@index');

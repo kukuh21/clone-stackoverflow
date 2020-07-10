@@ -26,13 +26,18 @@
                 <div class="form-group">
                     <label for="judul">Judul Pertanyaan</label>
                     <input type="text" class="form-control" id="judul" name="judul" placeholder="Tulis Judul pertanyaan">
-                    <small id="emailHelp" class="form-text text-muted">Pastikan judul belum perna ditanyakan</small>
+                    <small id="judulHelp" class="form-text text-muted">Pastikan judul belum perna ditanyakan</small>
                 </div>
                 <div class="form-group">
                     <label for="isi">Isi Pertanyaan</label>
                     <textarea name="isi" id="isi" class="form-control" placeholder="Tulis isi detail pertanyaan disini !" rows="8"></textarea>
-                </div>                
-                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tag Pertanyaan</label>
+                    <input type="text" class="form-control" id="tags" name="tags" placeholder="Tulis Tag dari pertanyaan">
+                    <small id="judulHelp" class="form-text text-muted">pisahkan setiap tag dengan tanda koma (,)</small>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
             </form>
         </div>
     </section>
