@@ -26,7 +26,7 @@
                 <div class="card col-md-12">
                     <div class="card-header with-border">
                         <h3 class="card-title"> {{$pertanyaan->judul}} </h3>
-                        <p class="card-subtile text-muted">Dibuat Oleh {{$pertanyaan->user->name}}</p>
+                        <p class="card-subtile text-muted">Dibuat Oleh {{$pertanyaan->user->name}} / Pada tanggal : {{$pertanyaan->created_at}}</p>
                     </div>
                     <div class="card-body">
                         <p class="text-black-50"> {{$pertanyaan->isi}} </p>
@@ -44,10 +44,7 @@
                         </form>
                         @else
                         @endif
-                        <br>
-                        <a href="" class="fa fa-thumbs-up mr-2">&nbsp;{{$pertanyaan->like}}</a>                        
-                        <a href="" class="fa fa-thumbs-down mr-2" style="color :red;">&nbsp;{{$pertanyaan->dislike}}</a>
-                        <a href="" class="fa fa-fire" style="color:black;">&nbsp;{{$pertanyaan->vote}}</a>
+                        <br>                        
                     </div>
                 </div>
             </div>

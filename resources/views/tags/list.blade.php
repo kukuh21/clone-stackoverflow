@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-body">                        
                         <h5 class="card-title mb-2">{{$pertanyaan->judul}}</h5>                                                                        
-                        <p class="card-subtitle text-muted">Dibuat Oleh : {{$pertanyaan->user->name}}</p>                             
+                        <p class="card-subtitle text-muted">Dibuat Oleh : {{$pertanyaan->user->name}} / Pada tanggal : {{$pertanyaan->created_at}}</p>                             
                         <p class="card-text">{{$pertanyaan->isi}}</p>
                         @foreach ($pertanyaan->tags as $tag)
                         <a href="/tag/{{$tag->id}}" class="btn btn-success btn-sm">{{$tag->tag_name}}</a>
