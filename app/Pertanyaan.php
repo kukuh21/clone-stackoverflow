@@ -20,8 +20,9 @@ class Pertanyaan extends Model
     {
         return $this->belongsToMany('App\Models\Tag', 'pertanyaan_tag', 'pertanyaan_id', 'tag_id');
     }
-    public function likes()
+    
+    public function komentar()
     {
-        return $this->belongsTo('App\Like');
+        return $this->hasMany('App\Komentar');
     }
 }

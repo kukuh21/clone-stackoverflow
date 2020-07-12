@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Pertanyaan;
 use App\User;
 use App\Jawaban;
+use App\Komentar;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 
@@ -76,9 +77,10 @@ class PertanyaanController extends Controller
     {
         $list = Pertanyaan::all();
         $pertanyaan = $list->find($id);
+        $komentar = Komentar::all();
         $jawaban  = $pertanyaan->jawaban()->orderBy('created_at', 'desc')->get();
         // dd($jawaban);
-        return view('pertanyaan.show', compact('pertanyaan', 'jawaban'));
+        return view('pertanyaan.show', compact('pertanyaan', 'jawaban', 'komentar'));
     }
 
     /**
