@@ -27,6 +27,8 @@ Route::get('/jawaban/{jawaban_id}/verify', 'JawabanController@verify');
 
 Route::post('/komentar/{pertanyaan_id}', 'KomentarController@store');
 Route::post('/komentar/jawaban/{jawaban_id}', 'KomentarController@storeJawabanComment');
+Route::delete('/komentar/{komentar_id}', 'KomentarController@destroy');
+route::delete('/komentar/jawaban/{komentar_id}', 'KomentarController@destroyJawabanComment');
 
 Route::get('tag/{tag_id}', 'TagController@show');
 Route::get('tag', 'TagController@index');

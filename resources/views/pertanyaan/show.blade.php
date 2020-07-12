@@ -47,8 +47,8 @@
                             like">UPVOTE</a> --}}
                             {{-- <a href=" {{action('VoteController@downvote')}} " class="fa fa-arrow-down
                             like">DOWNVOTE</a> --}}
-                        </form>                        
-                        @else                        
+                        </form>
+                        @else
                         @endif
                         <div class="dropdown">
                             <a class="btn btn-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -65,16 +65,33 @@
                                             placeholder="Tulis Komentar.." required>
                                         <button type="submit" class="btn btn-primary">Tambah Komentar</button>
                                     </div>
-                                </form>                                
+                                </form>
                                 <hr>
                                 @foreach ($komentar as $komen)
                                 @if ($komen->pertanyaan_id == $pertanyaan->id)
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="text-bold">
-                                            {{$komen->user->name}} : 
-                                        </div>                                        
+                                            {{$komen->user->name}} :
+                                        </div>
                                         {{$komen->isi}}
+                                        @if ($komen->user_id == Auth::id())
+                                        <div class="float-right">
+                                            <form action="/komentar/{{$komen->id}}" style="display: inline;"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-link text-danger">
+                                                    <i class="fa fa-trash" aria-hidden="true">
+                                                        Hapus Komentar
+                                                    </i>
+                                                </button>
+                                                <input type="hidden" name="pertanyaan_id" value="{{$pertanyaan->id}}">
+                                            </form>
+                                        </div>
+                                        @else
+
+                                        @endif
                                     </div>
                                 </div>
                                 @else
@@ -121,7 +138,7 @@
                         <input type="hidden" name="pertanyaan_id" value="{{$pertanyaan->id}}">
                     </form>
                     @else
-                    @endif                    
+                    @endif
                     @if (Auth::id() == $pertanyaan->user_id)
                     <a href="/jawaban/{{$jawaban->id}}/verify" class="card-link">Tandai Jawaban Benar</a>
                     @endif
@@ -141,23 +158,40 @@
                                         placeholder="Tulis Komentar.." required>
                                     <button type="submit" class="btn btn-primary">Tambah Komentar</button>
                                 </div>
-                            </form>                                
+                            </form>
                             <hr>
                             @foreach ($komentar as $komen)
                             @if ($komen->jawaban_id == $jawaban->id)
                             <div class="card">
                                 <div class="card-body">
                                     <div class="text-bold">
-                                        {{$komen->user->name}} : 
-                                    </div>                                        
+                                        {{$komen->user->name}} :
+                                    </div>
                                     {{$komen->isi}}
+                                    @if ($komen->user_id == Auth::id())
+                                    <div class="float-right">
+                                        <form action="/komentar/jawaban/{{$komen->id}}" style="display: inline;"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-link text-danger">
+                                                <i class="fa fa-trash" aria-hidden="true">
+                                                    Hapus Komentar
+                                                </i>
+                                            </button>
+                                            <input type="hidden" name="pertanyaan_id" value="{{$pertanyaan->id}}">
+                                        </form>
+                                    </div>
+                                    @else
+
+                                    @endif
                                 </div>
                             </div>
                             @else
                             @endif
                             @endforeach
                         </div>
-                </div>                
+                    </div>
                     {{-- <a href=" {{action('VoteController@upvote')}} " class="fa fa-arrow-up mr-4 like">UPVOTE</a>
                     --}}
                     {{-- <a href=" {{action('VoteController@downvote')}} " class="fa fa-arrow-down like">DOWNVOTE</a>

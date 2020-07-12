@@ -58,48 +58,20 @@ class KomentarController extends Controller
         return redirect('/pertanyaan/'.$request->pertanyaan_id);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $komentar = Komentar::find($id);
+        // dd($komentar->id);
+        $komentar->delete();
+
+        return redirect('/pertanyaan/'.$request->pertanyaan_id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function destroyJawabanComment(Request $request, $id)
     {
-        //
-    }
+        $komentar = Komentar::find($id);
+        $komentar->delete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect('/pertanyaan/'.$request->pertanyaan_id);
     }
 }
