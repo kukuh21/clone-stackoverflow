@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <p class="text-black-50"> {{$pertanyaan->isi}} </p>
                         @if (Auth::id() == $pertanyaan->user_id)
-                        <a href="#" class="card-link">Bantu Jawab</a>
+                        <a href="/jawaban/create/{{$pertanyaan->id}}" class="card-link">Bantu Jawab</a>
                         <a href="/pertanyaan/{{$pertanyaan->id}}/edit" class="card-link">Edit pertanyaan</a>
                         <form action="/pertanyaan/{{$pertanyaan->id}}" style="display: inline;" method="POST">
                             @csrf
@@ -40,7 +40,10 @@
                                 <i class="fa fa-trash" aria-hidden="true">
                                     Hapus Pertanyaan
                                 </i>
-                            </button>
+                            </button>                            
+                            <br>
+                            {{-- <a href=" {{action('VoteController@upvote')}} " class="fa fa-arrow-up mr-4 like">UPVOTE</a> --}}
+                            {{-- <a href=" {{action('VoteController@downvote')}} " class="fa fa-arrow-down like">DOWNVOTE</a> --}}
                         </form>
                         @else
                         @endif
@@ -49,6 +52,51 @@
                 </div>
             </div>
         </div>
+        <br>
+        <div class="col-sm-6">
+            <h3 class="m-0 text-dark">Jawaban</h3>
+            <hr>
+        </div>
+            @foreach ($jawaban as $jawaban)
+            <div class="row">
+                <div class="card col-md-12">
+                    @if ($jawaban->check == 1)
+                    <div class="card-header with-border bg-success">                        
+                        <p class="card-subtile text-muted text-black-50 text-bold">Dibuat Oleh {{$jawaban->user->name}} / Pada tanggal : {{$pertanyaan->created_at}} Ditandai Benar</p>
+                    </div>
+                    @else
+                    <div class="card-header with-border bg-gray">                        
+                        <p class="card-subtile text-muted text-black-50 text-bold">Dibuat Oleh {{$jawaban->user->name}} / Pada tanggal : {{$pertanyaan->created_at}}</p>
+                    </div>
+                    @endif                    
+                    <div class="card-body">
+                        <p class="text-black-50"> {{$jawaban->isi}} </p>
+                        @if (Auth::id() == $jawaban->user_id)                        
+                        <a href="/jawaban/{{$jawaban->id}}/edit" class="card-link">Edit Jawaban</a>
+                        <form action="/jawaban/{{$jawaban->id}}" style="display: inline;" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-link text-danger">
+                                <i class="fa fa-trash" aria-hidden="true">
+                                    Hapus Jawaban
+                                </i>
+                            </button>
+                            <input type="hidden" name="pertanyaan_id" value="{{$pertanyaan->id}}">                            
+                        </form>
+                        @else
+                        @endif
+                        @if (Auth::id() == $pertanyaan->user_id)
+                            <a href="/jawaban/{{$jawaban->id}}/verify" class="card-link">Tandai Jawaban Benar</a>
+                        @endif
+                        {{-- <a href=" {{action('VoteController@upvote')}} " class="fa fa-arrow-up mr-4 like">UPVOTE</a> --}}
+                            {{-- <a href=" {{action('VoteController@downvote')}} " class="fa fa-arrow-down like">DOWNVOTE</a> --}}
+                        <br>                        
+                    </div>
+                </div>
+            </div>
+            @endforeach                    
     </section>
 </div>
+@endsection
+@section('js')    
 @endsection

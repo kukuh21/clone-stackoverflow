@@ -11,7 +11,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/home">Home</a></li>
                         <li class="breadcrumb-item"><a href="/pertanyaan">List Pertanyaan</a></li>
-                        <li class="breadcrumb-item active">Jawaban</li>
+                        <li class="breadcrumb-item active">Edit Jawaban</li>
                     </ol>
                 </div>
             </div>
@@ -30,13 +30,14 @@
                     </div>
                 <form action="/jawaban/{{$pertanyaan->id}} " method="POST">
                     @csrf  
+                    @method('PUT')
                     <div class="form-group">
                         <label for="isi">Jawab</label>
                         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-                        <textarea name="isi" id="isi" class="form-control my-editor" placeholder="Tulis Jawaban !" rows="8"></textarea>
+                    <textarea name="isi" id="isi" class="form-control my-editor" placeholder="Tulis Jawaban !" rows="8">{{$jawaban->isi}}</textarea>
                     </div>                                        
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <input type="hidden" name="pertanyaan_id" value="{{$pertanyaan->id}}">                                                    
+                    <button type="submit" class="btn btn-primary">Update Jawaban</button>                                                    
+                    <input type="hidden" name="pertanyaan_id" value="{{$pertanyaan->id}}">
                 </form>
         </div>
     </section>

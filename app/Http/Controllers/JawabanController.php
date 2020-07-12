@@ -8,7 +8,6 @@ use App\User;
 use App\Jawaban;
 use Illuminate\Support\Facades\Auth;
 
-
 class JawabanController extends Controller
 {
     /**
@@ -35,10 +34,10 @@ class JawabanController extends Controller
     public function create($id)
     {
         //
-        $pertanyaan = Pertanyaan::where('id',$id)->get();
+        $pertanyaan = Pertanyaan::where('id', $id)->first();
 
         //dd($pertanyaan);
-        return view('jawaban.create',compact('pertanyaan'));
+        return view('jawaban.create', compact('pertanyaan'));
     }
 
     /**
@@ -47,19 +46,14 @@ class JawabanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $pertanyaan_id)
     {
-        //
-
-
         $Jawaban = new Jawaban;
-        $Jawaban->judul = $request->judul;
         $Jawaban->isi = $request->isi;
-        $Jawaban->pertanyaan_id = $request->pertanyaan_id;
+        $Jawaban->pertanyaan_id = $pertanyaan_id;
         $Jawaban->user_id = Auth::id();
         $Jawaban->save();
-        return redirect('pertanyaan');
-
+        return redirect('/pertanyaan/'.$request->pertanyaan_id);
     }
 
     /**
@@ -79,9 +73,12 @@ class JawabanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $jawaban = Jawaban::find($id)->first();
+        $pertanyaan = Pertanyaan::find($jawaban->pertanyaan_id)->first();
+        // dd($pertanyaan);
+        return view('jawaban.edit', compact('jawaban', 'pertanyaan'));
     }
 
     /**
@@ -93,7 +90,10 @@ class JawabanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $jawaban = Jawaban::find($id);
+        $jawaban->isi = $request->isi;
+        $jawaban->save();
+        return redirect('/pertanyaan/'.$request->pertanyaan_id);
     }
 
     /**
@@ -102,8 +102,10 @@ class JawabanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $jawaban = Jawaban::find($id);
+        $jawaban->delete();
+        return redirect('/pertanyaan/'.$request->pertanyaan_id);
     }
 }

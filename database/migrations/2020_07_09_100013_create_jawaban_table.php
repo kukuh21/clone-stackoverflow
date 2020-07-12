@@ -15,15 +15,12 @@ class CreateJawabanTable extends Migration
     {
         Schema::create('jawaban', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('judul');
             $table->text('isi');
-            $table->integer('like')->default('0');
-            $table->integer('dislike')->default('0');
-            $table->integer('vote')->default('0');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('pertanyaan_id');
             $table->foreign('pertanyaan_id')->references('id')->on('pertanyaan');
+            $table->boolean('check')->default('0');
             $table->timestamps();
         });
     }
@@ -35,7 +32,6 @@ class CreateJawabanTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('jawaban');
     }
 }

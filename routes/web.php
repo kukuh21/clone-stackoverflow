@@ -19,7 +19,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('pertanyaan', 'PertanyaanController');
 
 Route::get('jawaban/create/{pertanyaan_id}', 'JawabanController@create');// menuju form pengisian jawaban
-Route::post('jawaban', 'JawabanController@store');// menyimpan jawaban, redirect ke list pertanyaan
+Route::post('/jawaban/{petanyaan_id}', 'JawabanController@store');// menyimpan jawaban, redirect ke list pertanyaan
+Route::get('/jawaban/{petanyaan_id}/edit', 'JawabanController@edit');// menyimpan jawaban, redirect ke list pertanyaan
+Route::put('/jawaban/{petanyaan_id}', 'JawabanController@update');
+Route::delete('/jawaban/{petanyaan_id}', 'JawabanController@destroy');
 
 Route::get('tag/{tag_id}', 'TagController@show');
 Route::get('tag', 'TagController@index');

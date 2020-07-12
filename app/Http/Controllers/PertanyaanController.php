@@ -76,8 +76,9 @@ class PertanyaanController extends Controller
     {
         $list = Pertanyaan::all();
         $pertanyaan = $list->find($id);
-
-        return view('pertanyaan.show', compact('pertanyaan'));
+        $jawaban  = $pertanyaan->jawaban()->get();
+        // dd($jawaban);
+        return view('pertanyaan.show', compact('pertanyaan', 'jawaban'));
     }
 
     /**
