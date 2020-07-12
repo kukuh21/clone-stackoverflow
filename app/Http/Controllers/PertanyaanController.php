@@ -76,7 +76,7 @@ class PertanyaanController extends Controller
     {
         $list = Pertanyaan::all();
         $pertanyaan = $list->find($id);
-        $jawaban  = $pertanyaan->jawaban()->get();
+        $jawaban  = $pertanyaan->jawaban()->orderBy('created_at', 'desc')->get();
         // dd($jawaban);
         return view('pertanyaan.show', compact('pertanyaan', 'jawaban'));
     }

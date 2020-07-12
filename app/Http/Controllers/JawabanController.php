@@ -108,4 +108,17 @@ class JawabanController extends Controller
         $jawaban->delete();
         return redirect('/pertanyaan/'.$request->pertanyaan_id);
     }
+
+    public function verify($id, Request $request)
+    {
+        $jawabanAll = Jawaban::all();
+        foreach ($jawabanAll as $all) {
+            $all->check = 0;
+            $all->save();
+        }
+        $jawaban = Jawaban::find($id);
+        $jawaban->check = 1;
+        $jawaban->save();
+        return redirect('/pertanyaan/'.$jawaban->pertanyaan_id);
+    }
 }
